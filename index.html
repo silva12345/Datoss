@@ -7,65 +7,70 @@
 	<script src="cordova.js"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>	
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-	<script type="text/javascript">
-$(document).on("pageinit","#Principal", function(e, data){
+<script type="text/javascript">
  var opciones;
  opciones={maximumAge:500000,enableHighAccuracy:true,timeout:5000};
 
-	document.addEventListener("deviceready", onDeviceReady, false);
-    function onDeviceReady(){
-			/*******Evento para registrar servicios*********/
-			$("#btnGuardar").tap(function (){	
-				var nom=$("#Nombre").val();
-				var dir=$("#Direccion").val();
-				var rfc=$("#RFC").val();
-				var tel=$("#Telefono").val();
-				var clasif=$("#clasificacion").val();
-				var foto="img/fotos/foto1.jpg";
-				var lat=$("#latitud").val();
-				var longit=$("#longitud").val();
-				alert("Funciona guardar");								
-				$.ajax({
-					type:"POST",
-					url:"http://movilesisc.esy.es/Guardar.php",
-					data:"Nom="+nom+"&Dir="+dir+"&Rfc="+rfc+"&Tel="+tel+"&Clasif="+clasif+"&Foto="+foto+"&Lat="+lat+"&Long="+longit,
-					success:function (datos) {
-						alert("Datos guardados correctamente: "+datos);
-					}
-				});
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady(){
+		/*******Evento para registrar servicios*********/
+		$("#btnGuardar").tap(function (){	
+			var nom=$("#Nombre").val();
+			var dir=$("#Direccion").val();
+			var rfc=$("#RFC").val();
+			var tel=$("#Telefono").val();
+			var clasif=$("#clasificacion").val();
+			var foto="img/fotos/foto1.jpg";
+			var lat=$("#latitud").val();
+			var longit=$("#longitud").val();
+			alert("Funciona guardar");								
+			$.ajax({
+				type:"POST",
+				url:"http://movilesisc.esy.es/Guardar.php",
+				data:"Nom="+nom+"&Dir="+dir+"&Rfc="+rfc+"&Tel="+tel+"&Clasif="+clasif+"&Foto="+foto+"&Lat="+lat+"&Long="+longit,
+				success:function (datos) {
+					alert("Datos guardados correctamente: "+datos);
+				}
 			});
-
-			/**********Evento para consulta*************/
-			$("#btnConsServ").tap(function (){
-				navigator.notification.alert('Ejemplo de alerta!',alertDismissed,'Alerta!','hecho');
-				
-				$.ajax({
-					type:"POST",
-					url:"http://movilesisc.esy.es/Consulta.php",
-					data:"",
-					success:function (datos) {
-						var reg=$.parseJSON(datos);
-						var contenido=$("#datosTodos");
-						contenido.html("<table border='1' id='tb1'><th>Id</th><th>Nombre</th><th>Direción</th><th>RFC</th><th>Tel:</th><th>Clasif</th><th>Foto</th><th>Lat</th><th>Long</th>");
-						var fila=$("#tb1");
-						 for(var i in reg){
-						 	fila.append("<tr><td>"+reg[i].Id_Servicios+"</td><td>"+reg[i].Nombre_servicio+"</td><td>"+reg[i].Direcccion+"</td><td>"+reg[i].RFC+"</td><td>"+reg[i].Telefono+"</td><td>"+reg[i].Clasificacion+"</td><td>"+reg[i].Foto+"</td><td>"+reg[i].Latitud+"</td><td>"+reg[i].Longitud+"</td></tr>");
-						 }
-						 fila.append("</table>");
-					}
-				});
-			});
-		/***********Obtener Coordenadas***********************/
-		$("#btnCords").tap(function(){//Obtener coordenadas para el registro de servicios
-	  		obtenerUbicacion();
 		});
-	}
+
+		/**********Evento para consulta*************/
+		$("#btnConsServ").tap(function (){
+			//navigator.notification.alert('Ejemplo de alerta!',onPrompt,'Alerta!','hecho');
+			$.ajax({
+				type:"POST",
+				url:"http://movilesisc.esy.es/Consulta.php",
+				data:"",
+				success:function (datos) {
+					var reg=$.parseJSON(datos);
+					var fila=$("#datosTodos");
+					 for(var i in reg){
+					 	fila.append("<tr><td>"+reg[i].Id_Servicios+"</td><td>"+reg[i].Nombre_servicio+"</td><td>"+reg[i].Direcccion+"</td><td>"+reg[i].RFC+"</td><td>"+reg[i].Telefono+"</td><td>"+reg[i].Clasificacion+"</td><td>"+reg[i].Foto+"</td><td>"+reg[i].Latitud+"</td><td>"+reg[i].Longitud+"</td></tr>");
+					 }
+					$("#tb1").table("refresh");
+				}
+			});
+		});
+	/***********Obtener Coordenadas***********************/
+	$("#btnCords").tap(function(){//Obtener coordenadas para el registro de servicios			
+  		obtenerUbicacion();
+	});
+	$("#btnFoto").tap(function (){//Capturar fotografia
+		alert("Tomar foto");
+        navigator.device.capture.captureImage(function(mediaFiles){
+		    path = mediaFiles[0].fullPath;
+		    $('#regFoto').append('<img id="imagen" src="'+path+'" width="100%" />').attr('rel',path);
+	      },function(error){
+		        navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
+	      },{limit:1});
+  	});
+}
 	function obtenerUbicacion(){//Funcion que obtiene la Ubicación del dispositivo móvil
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition(exito, falla, opciones);
 
 	  function exito(posic){
-	      var corUbic=new google.maps.LatLng(posic.coords.latitude, posic.coords.longitude);
+	      //var corUbic=new google.maps.LatLng(posic.coords.latitude, posic.coords.longitude);
 	      $("#latitud").val(posic.coords.latitude);
 	      $("#longitud").val(posic.coords.longitude);	      
 	     }
@@ -77,7 +82,6 @@ $(document).on("pageinit","#Principal", function(e, data){
 	      alert("Su dispositivo no soporta la geolocalización o no esta habilitada esta funcionalidad");
 	  }
     }
-}
 </script>
 	<style type="text/css">
 		p{
@@ -117,6 +121,7 @@ $(document).on("pageinit","#Principal", function(e, data){
 				<option value="Farmacia">Farmacia</option>
 			</select>
 			<input type="button" id="btnFoto" value="Tomar foto">
+			<div id="regFoto"></div>
 			<input type="button" id="btnCords" value="Obtener coordenadas">
 			<input type="text" id="latitud" placeholder="Latitud">
 			<input type="text" id="longitud" placeholder="Longitud">
@@ -132,7 +137,25 @@ $(document).on("pageinit","#Principal", function(e, data){
 		</div>	
 		<div data-role="content">
 			<input type="button" id="btnConsServ" value="Consultar Todos los Servicios">
-			<div id="datosTodos"></div>
+			<div>
+			<table data-role="table" data-mode="columntoggle" class="ui-responsive" id="tb1">
+				<thead id="datosTodos">
+					<tr>
+						<th data-priority="1">Id</th>
+						<th data-priority="2">Nombre</th>
+						<th data-priority="3">Direción</th>
+						<th data-priority="4">RFC</th>
+						<th data-priority="5">Tel:</th>
+						<th data-priority="6">Clasif</th>
+						<th data-priority="7">Foto</th>
+						<th data-priority="8">Lat</th>
+						<th data-priority="9">Long</th>
+					</tr>
+				</thead>				
+				<tbody id="datosTodos">
+				</tbody>
+			</table>
+			</div>
 		</div>
 		<div data-role="footer">
 			<p><a href="#Principal" class="ui-btn ui-icon-home ui-btn-icon-left">Regresar</a></p>
