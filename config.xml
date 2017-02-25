@@ -94,9 +94,9 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
-    <preference name="org.apache.cordova.globalization.Globalization" />
-    <preference name="org.apache.cordova.geolocation.Geolocation" />
-    <preference name="org.apache.cordova.camera.CameraLauncher" />
+    <feature name="org.apache.cordova.globalization.Globalization" />
+    <feature name="org.apache.cordova.geolocation.Geolocation" />
+    <feature name="org.apache.cordova.camera.CameraLauncher" /-->
     <icon src="icon.png" />
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
