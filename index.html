@@ -44,7 +44,7 @@ alert("Funciona");
 					type:"POST",
 					url:"http://movilesisc.esy.es/Consulta.php",
 					data:"",
-					success:function ConsultaTodo(datos) {
+					success:function (datos) {
 						var reg=$.parseJSON(datos);
 						var contenido=$("#datosTodos");
 						contenido.html("<table border='1' id='tb1'><th>Id</th><th>Nombre</th><th>Direción</th><th>RFC</th><th>Tel:</th><th>Clasif</th><th>Foto</th><th>Lat</th><th>Long</th>");
