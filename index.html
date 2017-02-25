@@ -39,6 +39,7 @@ alert("Funciona");
 
 			/**********Evento para consulta*************/
 			$("#btnConsServ").tap(function (){
+				alert("Evento de boton consulta");
 				$.ajax({
 					type:"POST",
 					url:"http://movilesisc.esy.es/Consulta.php",
