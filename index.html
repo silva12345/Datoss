@@ -55,13 +55,13 @@ function onDeviceReady(){
   		obtenerUbicacion();
 	});
 	$("#btnFoto").tap(function (){//Capturar fotografia
-        /*navigator.device.capture.captureImage(function(mediaFiles){
+        navigator.device.capture.captureImage(function(mediaFiles){
 		    path = mediaFiles[0].fullPath;
 		    $('#regFoto').append('<img id="imagen" src="'+path+'" width="100%" />').attr('rel',path);
 	      },function(error){
 		        navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
-	      },{limit:1});*/
-	    navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+	      },{limit:1});
+	    /*navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
     	destinationType: Camera.DestinationType.FILE_URI });
 
 		function onSuccess(imageURI) {
@@ -70,7 +70,7 @@ function onDeviceReady(){
 
 		function onFail(message) {
     		alert('Fallo al obtener la foto: ' + message);
-		}
+		}*/
   	});
 }
 	function obtenerUbicacion(){//Funcion que obtiene la Ubicación del dispositivo móvil
