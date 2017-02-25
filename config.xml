@@ -23,11 +23,11 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
-    <icon src="img/icon.jpg" />
-    <icon gap:platform="android" gap:qualifier="ldpi" src="img/icon.jpg" />
-    <icon gap:platform="android" gap:qualifier="mdpi" src="img/icon.jpg" />
-    <icon gap:platform="android" gap:qualifier="hdpi" src="img/icon.jpg" />
-    <icon gap:platform="android" gap:qualifier="xhdpi" src="img/icon.jpg" />
+    <icon src="img/icon.png" />
+    <icon gap:platform="android" gap:qualifier="ldpi" src="img/icon.png" />
+    <icon gap:platform="android" gap:qualifier="mdpi" src="img/icon.png" />
+    <icon gap:platform="android" gap:qualifier="hdpi" src="img/icon.png" />
+    <icon gap:platform="android" gap:qualifier="xhdpi" src="img/icon.png" />
     <icon gap:platform="ios" height="57" src="www/res/icon/ios/icon-57.png" width="57" />
     <icon gap:platform="ios" height="72" src="www/res/icon/ios/icon-72.png" width="72" />
     <icon gap:platform="ios" height="114" src="www/res/icon/ios/icon-57-2x.png" width="114" />
