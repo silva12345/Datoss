@@ -34,7 +34,6 @@
     <preference name="DisallowOverscroll" value="false" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external" />
-    <plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
     <icon src="img/icon.png" />
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
