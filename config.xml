@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.example.hello" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
     <name>Servicios Libres</name>
     <description>
         Catálogo de servicios de libres puebla
@@ -8,7 +12,7 @@
         PhoneGap Team
     </author>
     <content src="index.html" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -28,7 +32,7 @@
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
     <preference name="AndroidPersistentFileLocation" value="Internal" />
-    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" /-->
     <icon src="img/icon.png" />
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
@@ -41,7 +45,7 @@
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
-    <engine name="android" spec="^4.0.0" />
+    <!--engine name="android" spec="^4.0.0" /-->
      <preference name="loglevel" value="DEBUG" />
     <feature name="Camera">
         <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
