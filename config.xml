@@ -12,10 +12,6 @@
         PhoneGap Team
     </author>
     <content src="index.html" />
-    <!--uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /-->
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
@@ -33,6 +29,12 @@
     <preference name="android-installLocation" value="auto" />
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="false" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external" />
+    <plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
     <icon src="img/icon.png" />
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
@@ -70,4 +72,11 @@
     <feature name="Media">
         <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
     </feature>
+    <gap:plugin name="org.apache.cordova.camera" version="0.2.4" />
+    <feature name="http://api.phonegap.com/1.0/geolocation"/>
+    <feature name="http://api.phonegap.com/1.0/network"/>
+    <feature name="http://api.phonegap.com/1.0/file"/>
+    <feature name="http://api.phonegap.com/1.0/camera"/>
+    <feature name="http://api.phonegap.com/1.0/media"/>
+    <feature name="http://api.phonegap.com/1.0/device"/>
 </widget>
