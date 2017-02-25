@@ -8,11 +8,12 @@
 	<script type="text/javascript" src="js/jquery.js"></script>	
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
 	<script type="text/javascript">
-	//$(document).on("pageinit","#Principal", function(e, data){
+$(document).on("pageinit","#Principal", function(e, data){
+ var opciones;
+ opciones={maximumAge:500000,enableHighAccuracy:true,timeout:5000};
 
 	document.addEventListener("deviceready", onDeviceReady, false);
     function onDeviceReady(){
-		/*$(document).ready(function (){
 			/*******Evento para registrar servicios*********/
 			$("#btnGuardar").tap(function (){	
 				var nom=$("#Nombre").val();
@@ -29,13 +30,15 @@
 					url:"http://movilesisc.esy.es/Guardar.php",
 					data:"Nom="+nom+"&Dir="+dir+"&Rfc="+rfc+"&Tel="+tel+"&Clasif="+clasif+"&Foto="+foto+"&Lat="+lat+"&Long="+longit,
 					success:function (datos) {
-						alert(datos);
+						alert("Datos guardados correctamente: "+datos);
 					}
 				});
 			});
 
 			/**********Evento para consulta*************/
 			$("#btnConsServ").tap(function (){
+				navigator.notification.alert('Ejemplo de alerta!',alertDismissed,'Alerta!','hecho');
+				
 				$.ajax({
 					type:"POST",
 					url:"http://movilesisc.esy.es/Consulta.php",
@@ -52,8 +55,30 @@
 					}
 				});
 			});
+		/***********Obtener Coordenadas***********************/
+		$("#btnCords").tap(function(){//Obtener coordenadas para el registro de servicios
+	  		obtenerUbicacion();
+		});
 	}
-	</script>
+	function obtenerUbicacion(){//Funcion que obtiene la Ubicación del dispositivo móvil
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(exito, falla, opciones);
+
+	  function exito(posic){
+	      var corUbic=new google.maps.LatLng(posic.coords.latitude, posic.coords.longitude);
+	      $("#latitud").val(posic.coords.latitude);
+	      $("#longitud").val(posic.coords.longitude);	      
+	     }
+
+	      function falla(error){
+	         alert("Error en el servicio Geolocalizador: "+error.code+" detalle: "+error.response);
+	      }
+	  }else{
+	      alert("Su dispositivo no soporta la geolocalización o no esta habilitada esta funcionalidad");
+	  }
+    }
+}
+</script>
 	<style type="text/css">
 		p{
 			text-align: center;

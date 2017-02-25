@@ -11,10 +11,9 @@ $lat=$_POST["Lat"];
 $longit=$_POST["Long"];
 
 $sql="INSERT INTO servicios VALUES ('0','$nom','$dir','$rfc','$tel','$clasif','$foto','$lat','$longit')";
-echo $sql;
 $reg=mysqli_query($conn,$sql);
 if($reg){
-echo "Datos registrados: Nombre:".$nom." Dirección:".$dir." RFC:".$rfc." Tel:".$tel." Clasificación:".$clasif." Foto:".$foto." Latitud:".$lat." Longitud:".$longit;
+echo "Nombre:".$nom." Dirección:".$dir." RFC:".$rfc." Tel:".$tel." Clasificación:".$clasif." Foto:".$foto." Latitud:".$lat." Longitud:".$longit;
 }else{
 echo "Error al registrar los datos:".mysqli_error();	
 }
