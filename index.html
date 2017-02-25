@@ -8,9 +8,15 @@
 	<script type="text/javascript" src="js/jquery.js"></script>	
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
 	<script type="text/javascript">
+	/*$(document).on("pageinit","#Principal", function(e, data){
+
+	document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady(){
+    	alert("Funciona");*/
 		$(document).ready(function (){
+alert("Funciona");
 			/*******Evento para registrar servicios*********/
-			$("#btnGuardar").tap(function (){
+			/*$("#btnGuardar").tap(function (){
 				
 				var nom=$("#Nombre").val();
 				var dir=$("#Direccion").val();
@@ -29,7 +35,7 @@
 						alert("Respuesta:"datos);
 					}
 				});
-			});
+			});*/
 
 			/**********Evento para consulta*************/
 			$("#btnConsServ").tap(function (){
@@ -50,6 +56,8 @@
 				});
 			});
 		});
+	/*}
+	}*/
 	</script>
 	<style type="text/css">
 		p{
